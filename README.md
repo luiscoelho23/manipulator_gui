@@ -149,11 +149,6 @@ If you encounter issues with the GUI:
    ros2 run manipulator_gui GUI --debug
    ```
 
-5. Controller-specific issues:
-   - Verify controller availability: `ros2 control list_controllers`
-   - Check controller status: `ros2 control list_hardware_interfaces`
-   - Try direct command testing: `ros2 run manipulator_control_strategies send_to_pos.py 0 0 0 0 0 0 0 --debug`
-
 ## License
 
 This project is licensed under the Apache License 2.0. 
