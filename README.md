@@ -2,8 +2,6 @@
 
 A collection of graphical user interfaces for the FRANKA EMIKA Panda robot manipulator project.
 
-![Manipulator GUI](https://i.imgur.com/placeholder.png)
-
 ## Overview
 
 This package provides a comprehensive set of graphical user interfaces for configuring, training, and evaluating robot control models:
@@ -19,6 +17,8 @@ This package provides a comprehensive set of graphical user interfaces for confi
 - **Configuration Utilities**: Parameter adjustment for various algorithms
 - **Training Progress Monitoring**: Live training metrics and model performance
 - **Experiment Management**: Tools for organizing and running experiments
+- **Controller Selection**: Support for position, effort, and trajectory controllers
+- **Debug Mode**: Enhanced debugging tools for troubleshooting
 
 ## Architecture
 
@@ -59,7 +59,7 @@ manipulator_gui/
 2. Clone the repository into your workspace:
    ```bash
    cd ~/ws_manipulator/src
-   git clone https://github.com/username/manipulator_gui.git
+   git clone https://github.com/luisceolho23/manipulator_gui.git
    ```
 
 3. Build the workspace:
@@ -83,21 +83,6 @@ source ~/ws_manipulator/install/setup.bash
 ros2 run manipulator_gui GUI
 ```
 
-### Using Individual GUI Components
-
-You can also run individual GUI components directly:
-
-```bash
-# Setup Menu
-ros2 run manipulator_gui SetupMenu
-
-# Training RL Menu
-ros2 run manipulator_gui TrainRLMenu
-
-# Evaluation and Run Menu
-ros2 run manipulator_gui EvalnRunMenu
-```
-
 ### GUI Functionality
 
 #### Setup Menu
@@ -110,12 +95,37 @@ ros2 run manipulator_gui EvalnRunMenu
 - Configure training parameters
 - Monitor training progress
 - Save trained models
+- Configure controller integration settings
 
 #### Evaluation and Run Menu
 - Load saved models and DMPs
 - Configure evaluation scenarios
 - Run experiments with the robot
 - Visualize and analyze results
+- Select controller type for execution
+- Monitor controller status and debugging information
+
+#### Controller Configuration
+- Auto-detect available controllers
+- Select controller type (position, effort, trajectory)
+- Test controller functionality with basic movements
+- Configure controller parameters
+- Toggle debug mode for detailed logging
+
+### Controller Types
+
+The GUI supports configuration and testing of multiple controller types:
+
+- **Forward Position Controller**: Direct joint position control
+- **Joint Trajectory Controller (Position)**: Smooth trajectory-based position control
+- **Joint Trajectory Controller (Effort)**: Trajectory-based effort control
+
+You can select the appropriate controller type based on your experiment requirements. The GUI provides an interface to:
+
+1. Check controller availability
+2. Test controller functionality
+3. Configure control parameters
+4. Enable debugging for troubleshooting
 
 ## Troubleshooting
 
@@ -136,8 +146,13 @@ If you encounter issues with the GUI:
 
 4. Try running with debug output:
    ```bash
-   python3 -m manipulator_gui.GUI --debug
+   ros2 run manipulator_gui GUI --debug
    ```
+
+5. Controller-specific issues:
+   - Verify controller availability: `ros2 control list_controllers`
+   - Check controller status: `ros2 control list_hardware_interfaces`
+   - Try direct command testing: `ros2 run manipulator_control_strategies send_to_pos.py 0 0 0 0 0 0 0 --debug`
 
 ## License
 
