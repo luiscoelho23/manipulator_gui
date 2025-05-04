@@ -59,7 +59,7 @@ manipulator_gui/
 2. Clone the repository into your workspace:
    ```bash
    cd ~/ws_manipulator/src
-   git clone https://github.com/luisceolho23/manipulator_gui.git
+   git clone https://github.com/luiscoelho23/manipulator_gui.git
    ```
 
 3. Build the workspace:
