@@ -828,17 +828,17 @@ def setup_gui():
         script_type = script_var.get()
         
         if script_type == "load_dmps":
-        # Check if files exist
-        mpx_path = mpx_path_var.get()
-        rl_path = rl_path_var.get()
-        
-        if not os.path.exists(mpx_path):
-            messagebox.showerror("Error", f"MPX file not found: {mpx_var.get()}")
-            return
+            # Check if files exist
+            mpx_path = mpx_path_var.get()
+            rl_path = rl_path_var.get()
             
-        if not os.path.exists(rl_path):
-            messagebox.showerror("Error", f"RL Actor file not found: {rl_var.get()}")
-            return
+            if not os.path.exists(mpx_path):
+                messagebox.showerror("Error", f"MPX file not found: {mpx_var.get()}")
+                return
+                
+            if not os.path.exists(rl_path):
+                messagebox.showerror("Error", f"RL Actor file not found: {rl_var.get()}")
+                return
 
         # Use PYTHONUNBUFFERED to ensure unbuffered output
             command = f'PYTHONUNBUFFERED=1 ros2 run manipulator_control_strategies load_dmps.py {mpx_path} {rl_path} {debug_flag}'
