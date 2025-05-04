@@ -135,6 +135,7 @@ If you encounter issues with the GUI:
    ```bash
    pip3 install pillow matplotlib
    sudo apt-get install python3-tk
+   pip install --upgrade Pillow
    ```
 
 2. Verify resource paths:
