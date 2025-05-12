@@ -464,11 +464,12 @@ def setup_gui():
             messagebox.showerror("Error", "Output file name is required!")
             return
         
-        config_name = os.path.basename(config_var.get())
+        # Use the full config path instead of just the filename
+        config_path = config_var.get()
         package_path = get_package_directory('manipulator_skill_acquisition')
         script_path = os.path.join(package_path, 'lib', 'manipulator_skill_acquisition', 
                                 'SetupMenu', 'dmp_generator.py')
-        run_script(script_path, [config_name, files["robot_angle_traj"], output_file])
+        run_script(script_path, [config_path, files["robot_angle_traj"], output_file])
 
     btn_run_dmp = ttk.Button(frame_dmp, text="Generate DMP", command=execute_dmp)
     btn_run_dmp.pack(pady=20)
